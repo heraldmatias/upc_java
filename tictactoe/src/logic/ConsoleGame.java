@@ -28,7 +28,7 @@ public class ConsoleGame extends Game {
             String xy = null;
             int x, y;
             if (this.player1.is_boot()) {
-                this.register_movement(player1);
+                this.procesar_movimiento();
                 this.pause(1000);
             } else {
                 //PEDIR INPUTS				
@@ -40,13 +40,14 @@ public class ConsoleGame extends Game {
                         xy = br.readLine();
                         x = Integer.parseInt(xy.substring(0, xy.indexOf(",")));
                         y = Integer.parseInt(xy.substring(xy.indexOf(",") + 1));
+                        this.setCurrentPosition(new int[]{x, y});
                     } catch (IOException | NumberFormatException | StringIndexOutOfBoundsException e) {
                     }
                 } while (!Pattern.matches("[0-9],[0-9]", xy) | !this.isValidMovement(x, y));
-                this.register_movement(player1, x, y);
+                this.procesar_movimiento();
             }
             if (player2.is_boot()) {
-                this.register_movement(player2);
+                this.procesar_movimiento();
                 this.pause(1000);
             } else {
                 //PEDIR INPUTS
@@ -58,10 +59,11 @@ public class ConsoleGame extends Game {
                         xy = br.readLine();
                         x = Integer.parseInt(xy.substring(0, xy.indexOf(",")));
                         y = Integer.parseInt(xy.substring(xy.indexOf(",") + 1));
+                        this.setCurrentPosition(new int[]{x, y});
                     } catch (IOException | NumberFormatException | StringIndexOutOfBoundsException e) {
                     }
                 } while (!Pattern.matches("[0-9],[0-9]", xy) | !this.isValidMovement(x, y));
-                this.register_movement(player2, x, y);
+                this.procesar_movimiento();
             }
         }
         if (this.getWinner() != null) {

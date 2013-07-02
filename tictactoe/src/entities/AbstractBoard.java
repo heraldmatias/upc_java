@@ -21,14 +21,6 @@ public abstract class AbstractBoard {
         this.basedrawBoard(this.getSlots());
     }
 
-    public int[] getAvailableSlotsX() {
-        return new int[3];
-    }    
-
-    public int[] getavailableSlotsY() {
-        return new int[3];
-    }
-
     public void restart(){
         this.slots = new Symbol[MAX_ROWS][MAX_COLS];
     }

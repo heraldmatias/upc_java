@@ -3,7 +3,6 @@ package logic;
 import entities.AbstractBoard;
 import entities.AbstractPlayer;
 import entities.Symbol;
-import java.awt.Point;
 
 public abstract class Game {
 
@@ -16,8 +15,8 @@ public abstract class Game {
     protected AbstractPlayer player1;
     protected AbstractPlayer player2;
     protected AbstractPlayer currentPlayer;
-    private Point currentPosition;
-
+    private int[] currentPosition;
+    
     public Game(AbstractBoard board, AbstractPlayer player1, AbstractPlayer player2) {
         this.board = board;
         this.player1 = player1;
@@ -63,27 +62,51 @@ public abstract class Game {
         return this.board.isFinished();
     }
 
-    public boolean register_movement(AbstractPlayer player, int x, int y) {
-        boolean done = this.board.make_movement(player.do_movement(x, y));
-        if (done) {
-            this.board.drawBoard();
-            this.currentPlayer = player;
-        }
-        return done;
-    }
-
-    public boolean register_movement(AbstractPlayer player) {
-        if (player.is_boot()) {
-            Symbol move = player.do_movement();
+    public void procesar_movimiento() {
+        Symbol move;
+        if (this.currentPlayer.is_boot()) {
+            move = this.currentPlayer.do_movement();
             if (!this.board.isFinished()) {
                 while (!this.board.isValidMovement(move.getX(), move.getY())) {
-                    move = player.do_movement();
+                    move = this.currentPlayer.do_movement();
                 }
-                return register_movement(player, move.getX(), move.getY());
+                boolean done = this.board.make_movement(move);
+                if (done) {
+                    if (this.currentPlayer.equals(player1)) {
+                        this.currentPlayer = player2;
+                    } else {
+                        this.currentPlayer = player1;
+                    }
+                    this.board.drawBoard();
+                }
+            }
+        } else {
+            int[] p = this.getCurrentPosition();
+            AbstractPlayer _player;
+            if (p != null) {
+                boolean done = this.board.make_movement(this.currentPlayer.do_movement(p[0], p[1]));
+                if (done) {
+                    if (this.currentPlayer.equals(player1)) {
+                        _player = player2;
+                    } else {
+                        _player = player1;
+                    }
+                    if (_player.is_boot()) {
+                        move = _player.do_movement();
+                        if (!this.board.isFinished()) {
+                            while (!this.board.isValidMovement(move.getX(), move.getY())) {
+                                move = _player.do_movement();
+                            }
+                            this.board.make_movement(move);
+                        }
+                    }else{
+                        this.currentPlayer=_player;
+                    }
+                    this.board.drawBoard();
+                }
             }
         }
-        return false;
-    }
+    }    
 
     public AbstractPlayer getWinner() {
         if (this.board.getWinner() != null) {
@@ -101,11 +124,11 @@ public abstract class Game {
         return this.board.isValidMovement(x, y);
     }
 
-    public Point getCurrentPosition() {
+    public int[] getCurrentPosition() {
         return currentPosition;
     }
 
-    public void setCurrentPosition(Point currentPosition) {
+    public void setCurrentPosition(int[] currentPosition) {
         this.currentPosition = currentPosition;
     }
 

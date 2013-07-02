@@ -25,7 +25,7 @@ public class TicTacToe {
     
     public static void initConsoleGame(){        
         Board board = new Board();
-        AbstractPlayer player1 = new Player( new Symbol('X') );
+        AbstractPlayer player1 = new PlayerBot( new Symbol('X') );
         AbstractPlayer player2 = new PlayerBot( new Symbol('O') );
         Game tictactoe = new ConsoleGame(board, player1, player2);
         tictactoe.start();

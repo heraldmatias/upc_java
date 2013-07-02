@@ -35,50 +35,17 @@ public class GraphicGame extends Game {
     public void process() {
         if (this.getGameType() == GAME_BOT_VS_BOT) {
             while (!this.isFinished()) {
-                if (this.player1.is_boot()) {
-                    this.register_movement(player1);
-                    this.pause(1000);
-                }
-                if (player2.is_boot()) {
-                    this.register_movement(player2);
-                    this.pause(1000);
-                }
+                procesar_movimiento();
+                this.pause(1000);
             }
         } else if (this.getGameType() == GAME_BOT_VS_HUMAN) {
-            Point p = this.getCurrentPosition();
-            if (p != null) {
-                do_movements(p.x, p.y);
-            }
-            this.do_movements(0, 0);
+            procesar_movimiento();
         } else if (this.getGameType() == GAME_HUMAN_VS_BOT) {
-            Point p = this.getCurrentPosition();
-            if (p != null) {
-                do_movements(p.x, p.y);
-            }
-            do_movements(0, 0);
-        }else if (this.getGameType() ==  GAME_HUMAN_VS_HUMAN){
-            Point p = this.getCurrentPosition();
-            if (p != null) {
-                do_movements(p.x, p.y);
-            }
+            procesar_movimiento();
+        } else if (this.getGameType() == GAME_HUMAN_VS_HUMAN) {
+            procesar_movimiento();
         }
-    }
-
-    public void do_movements(int x, int y) {
-        boolean done;
-        if (this.currentPlayer.is_boot()) {
-            done = this.register_movement(this.currentPlayer);
-        } else {
-            done = this.register_movement(this.currentPlayer, x, y);
-        }
-        if (done) {
-            if (this.currentPlayer.equals(player1)) {
-                this.currentPlayer = player2;
-            } else {
-                this.currentPlayer = player1;
-            }
-        }
-    }
+    }    
 
     class WindowGame extends JFrame {
 
@@ -107,7 +74,7 @@ public class GraphicGame extends Game {
             public void mouseClicked(MouseEvent me) {
                 Point p = ((BoardGraphic) board).getBoardPositionAtPoint(me.getPoint());
                 if (p != null) {
-                    setCurrentPosition(p);
+                    setCurrentPosition(new int[]{p.x, p.y});
                     process();
                     repaint();
                     if (isFinished()) {
