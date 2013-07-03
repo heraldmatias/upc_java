@@ -6,7 +6,10 @@ package edu.upc.poo.bbva.enums;
  */
 public enum TipoOperacion {
     RETIRO (1, "retiro"),
-    DEPOSITO (2, "deposito");
+    DEPOSITO (2, "deposito"),
+    APERTURA_CUENTA (3, "apertura"),
+    CANCELACION_CUENTA (4, "cancelacion"),
+    PRESTAMO (5, "prestamo");
     
     Integer id;
     String label;   
