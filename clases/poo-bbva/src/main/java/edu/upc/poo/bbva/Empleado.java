@@ -15,7 +15,8 @@ public abstract class Empleado {
     private String nombre;
     private String dni;
     
-    public abstract boolean autorizar(TipoOperacion tipo);
+    public abstract boolean autorizar(TipoOperacion tipo, Cliente cliente);
+    public abstract boolean autorizar(TipoOperacion tipo, Cliente cliente, double monto);
 
     public String getNombre() {
         return nombre;
