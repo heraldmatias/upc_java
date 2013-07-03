@@ -1,7 +1,7 @@
 package entities;
-
-import java.awt.Graphics;
-
+/*
+ * Implementacion generica de un tablero de tictactoe
+ */
 public abstract class AbstractBoard {
 
     public final static int MAX_ROWS = 3;

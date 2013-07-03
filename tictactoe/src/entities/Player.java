@@ -1,5 +1,7 @@
 package entities;
-
+/*
+ * Implementacion de un jugador humano
+ */
 public class Player extends AbstractPlayer {
 
     public Player(Symbol symbol) {

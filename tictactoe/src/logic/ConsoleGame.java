@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 /**
  *
+ * Implementacion del juego tictactoe en consola
  * @author heraldo
  */
 public class ConsoleGame extends Game {

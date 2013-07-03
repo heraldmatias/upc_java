@@ -3,7 +3,9 @@ package logic;
 import entities.AbstractBoard;
 import entities.AbstractPlayer;
 import entities.Symbol;
-
+/*
+ * Implementacion del juego tictactoe
+ */
 public abstract class Game {
 
     public final static int GAME_BOT_VS_BOT = 1;

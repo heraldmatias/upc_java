@@ -13,6 +13,7 @@ import java.awt.geom.Line2D;
 
 /**
  *
+ * Implementacion de un tablero grafico
  * @author heraldo
  */
 public class BoardGraphic extends AbstractBoard {

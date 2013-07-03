@@ -1,5 +1,7 @@
 package entities;
-
+/*
+ * Implementacion de un jugador automatico
+ */
 import java.util.Random;
 
 public class PlayerBot extends AbstractPlayer {

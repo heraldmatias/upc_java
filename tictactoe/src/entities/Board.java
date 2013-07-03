@@ -1,5 +1,7 @@
 package entities;
-
+/*
+ * Implementacion de un tablero en consola
+ */
 public class Board extends AbstractBoard {
 
     @Override

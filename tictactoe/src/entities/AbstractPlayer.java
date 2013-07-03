@@ -1,5 +1,7 @@
 package entities;
-
+/*
+ * Implementacion generica de un jugador
+ */
 import java.util.Objects;
 
 public abstract class AbstractPlayer {

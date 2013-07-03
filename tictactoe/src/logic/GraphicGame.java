@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *Implementacion del juego tictactoe en modo grafico
  * @author heraldo
  */
 public class GraphicGame extends Game {
