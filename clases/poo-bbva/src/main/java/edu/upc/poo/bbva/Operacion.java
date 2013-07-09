@@ -10,13 +10,17 @@ public class Operacion {
 
     private TipoOperacion operacion;
     private double monto;
+    private Cliente cliente;
     
-    public Operacion() {
+    public Operacion(TipoOperacion operacion, Cliente cliente) {
+        this.operacion = operacion;
+        this.cliente = cliente;
     }
 
-    public Operacion(TipoOperacion operacion, double monto) {
+    public Operacion(TipoOperacion operacion, double monto, Cliente cliente) {
         this.operacion = operacion;
         this.monto = monto;
+        this.cliente = cliente;
     }
 
     public TipoOperacion getOperacion() {
@@ -33,5 +37,13 @@ public class Operacion {
 
     public void setMonto(double monto) {
         this.monto = monto;
-    }    
+    }
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

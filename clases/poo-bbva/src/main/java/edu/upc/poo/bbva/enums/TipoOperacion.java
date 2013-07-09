@@ -9,7 +9,10 @@ public enum TipoOperacion {
     DEPOSITO (2, "deposito"),
     APERTURA_CUENTA (3, "apertura"),
     CANCELACION_CUENTA (4, "cancelacion"),
-    PRESTAMO (5, "prestamo");
+    PRESTAMO (5, "prestamo"),    
+    PAGO_SERVICIO (6, "pago_servicio"),
+    CREDITO (7, "credito"),
+    DESEMBOLSO (8, "desembolso");
     
     Integer id;
     String label;   

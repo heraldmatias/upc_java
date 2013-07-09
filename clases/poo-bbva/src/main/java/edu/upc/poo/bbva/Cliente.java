@@ -4,25 +4,40 @@
  */
 package edu.upc.poo.bbva;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author alumno
  */
 public class Cliente {
     
-    private List<Documento> documentos = new ArrayList<Documento>();
     private String nombre;
     private int edad;
 
-    public List<Documento> getDocumentos() {
-        return documentos;
+    public Cliente(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
     }
 
-    public void setDocumentos(List<Documento> documentos) {
-        this.documentos = documentos;
+    public Cliente() {
+        this("Sin nombre", (int)Math.random()*50+18);
     }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    
     
 }

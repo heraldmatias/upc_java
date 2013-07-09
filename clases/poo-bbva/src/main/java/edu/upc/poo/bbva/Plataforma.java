@@ -1,27 +1,102 @@
 package edu.upc.poo.bbva;
 
 import edu.upc.poo.bbva.enums.TipoCuenta;
+import edu.upc.poo.bbva.enums.TipoOperacion;
 
 /**
  *
  * @author gian.corzo
  */
 public class Plataforma {
-        
-    public void aperturarCuenta(TipoCuenta cuenta){
-        System.out.println(cuenta.getLabel()+" aperturada con exito");
+
+    Boveda boveda;
+    private Gerente gerente;
+    private Subgerente subgerente;
+    private Cliente cliente;
+    private Archivador archivador;
+
+    public Plataforma() {
+        archivador = Archivador.getInstance();
+        boveda = Boveda.getInstance();
+        this.gerente = new Gerente();
+        this.subgerente = new Subgerente();
     }
-    
-    public void cancelarCuenta(TipoCuenta cuenta){
-        System.out.println(cuenta.getLabel()+" cancelada con exito");
+
+    public void aperturarCuenta(TipoCuenta cuenta) {
+        if (archivador.validarDocumentos(cliente)) {
+            Operacion ope = new Operacion(TipoOperacion.APERTURA_CUENTA, cliente);
+            if (this.gerente.autorizar(ope)) {
+                switch (cuenta) {
+                    case CREDITO: {
+                    }
+                    case DEBITO: {
+                    }
+                }
+            }
+        }
     }
-    
-    public String entregaTarjeta(TipoCuenta cuenta){
-        return "";
+
+    public void cancelarCuenta(TipoCuenta cuenta) {
+        if (archivador.validarDocumentos(cliente)) {
+            Operacion ope = new Operacion(TipoOperacion.CANCELACION_CUENTA, cliente);
+            if (this.gerente.autorizar(ope)) {
+                switch (cuenta) {
+                    case CREDITO: {
+                    }
+                    case DEBITO: {
+                    }
+                }
+            }
+        }
     }
-    
-    public void tramitarPrestamo(){
-        
+
+    public boolean aprobarCredito(double monto) {
+        if (archivador.validarDocumentos(cliente)) {
+            Operacion ope = new Operacion(TipoOperacion.CREDITO, monto, cliente);
+            return this.gerente.autorizar(ope);
+        }
+        return false;
     }
-    
+
+    public double hacerDesembolso(double monto) {
+        Operacion ope = new Operacion(TipoOperacion.DESEMBOLSO, monto, cliente);
+        double aRetornar = 0;
+        aRetornar = boveda.retiro(ope);
+        return aRetornar;
+    }
+
+    public String entregaTarjeta(TipoCuenta cuenta) {
+        String numero = "";
+        for (int i = 0; i < 10; i++) {
+            numero += (int) Math.random() * 10;
+        }
+        return cuenta.getLabel() + ": " + numero;
+    }
+
+    public void tramitarPrestamo() {
+    }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
+    }
+
+    public Subgerente getSubgerente() {
+        return subgerente;
+    }
+
+    public void setSubgerente(Subgerente subgerente) {
+        this.subgerente = subgerente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

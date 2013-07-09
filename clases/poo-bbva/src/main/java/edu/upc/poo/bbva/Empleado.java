@@ -4,8 +4,6 @@
  */
 package edu.upc.poo.bbva;
 
-import edu.upc.poo.bbva.enums.TipoOperacion;
-
 /**
  *
  * @author alumno
@@ -14,9 +12,16 @@ public abstract class Empleado {
     
     private String nombre;
     private String dni;
+
+    public Empleado() {
+    }
+
+    public Empleado(String nombre, String dni) {
+        this.nombre = nombre;
+        this.dni = dni;
+    }    
     
-    public abstract boolean autorizar(TipoOperacion tipo, Cliente cliente);
-    public abstract boolean autorizar(TipoOperacion tipo, Cliente cliente, double monto);
+    public abstract boolean autorizar(Operacion operacion);    
 
     public String getNombre() {
         return nombre;

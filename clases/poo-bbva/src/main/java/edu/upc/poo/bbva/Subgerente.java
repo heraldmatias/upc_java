@@ -1,6 +1,5 @@
 package edu.upc.poo.bbva;
 
-import edu.upc.poo.bbva.enums.TipoOperacion;
 import static edu.upc.poo.bbva.enums.TipoOperacion.DEPOSITO;
 import static edu.upc.poo.bbva.enums.TipoOperacion.RETIRO;
 
@@ -10,26 +9,12 @@ import static edu.upc.poo.bbva.enums.TipoOperacion.RETIRO;
  */
 public class Subgerente extends Empleado{
 
-    @Override
-    public boolean autorizar(TipoOperacion tipo, Cliente cliente) {
-        switch(tipo){
-            case APERTURA_CUENTA:{
-                return true;
-            }
-            case CANCELACION_CUENTA:{
-                return true;
-            }
-            default:{
-                return false;
-            }
-        }
-    }
 
     @Override
-    public boolean autorizar(TipoOperacion tipo, Cliente cliente, double monto) {
-        switch(tipo){
+    public boolean autorizar(Operacion operacion) {
+        switch(operacion.getOperacion()){
             case RETIRO:{
-                return monto>=1 && monto<=20000;
+                return operacion.getMonto()>=1 && operacion.getMonto()<=20000;
             }
             case DEPOSITO:{
                 return true;

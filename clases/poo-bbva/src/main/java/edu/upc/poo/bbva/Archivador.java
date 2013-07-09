@@ -15,7 +15,7 @@ import java.util.List;
 public class Archivador {
     
     private static Archivador instance = null;
-    private List<Cliente> clientes = new ArrayList<Cliente>();
+    private List<Documento> documentos = new ArrayList<Documento>();
     
     private static void createInstance() {
         if (instance == null) {
@@ -45,7 +45,7 @@ public class Archivador {
     }
     
     public boolean validarDocumentos(Cliente cliente) {
-        for (Iterator<Documento> it = cliente.getDocumentos().iterator(); it.hasNext();) {
+        for (Iterator<Documento> it = this.documentos.iterator(); it.hasNext();) {
             Documento documento = it.next();
             return true;
         }
