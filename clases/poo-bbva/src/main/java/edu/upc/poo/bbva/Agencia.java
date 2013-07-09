@@ -1,5 +1,6 @@
 package edu.upc.poo.bbva;
 
+import edu.upc.poo.bbva.enums.TipoCuenta;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +69,18 @@ public class Agencia
         }else{
             System.out.println("Retiro no valido");
         }
+        String cuenta = plataforma.aperturarCuenta(TipoCuenta.DEBITO);
+        if(cuenta != null){
+            System.out.println(cuenta);
+        }else{
+            System.out.println("No se aperturo la cuenta");
+        }
         
-        
+        cuenta = plataforma.aperturarCuenta(TipoCuenta.CREDITO);
+        if(cuenta != null){
+            System.out.println(cuenta);
+        }else{
+            System.out.println("No se aperturo la cuenta");
+        }
     }
 }

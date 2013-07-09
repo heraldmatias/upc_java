@@ -45,10 +45,10 @@ public class Archivador {
     }
     
     public boolean validarDocumentos(Cliente cliente) {
-        for (Iterator<Documento> it = this.documentos.iterator(); it.hasNext();) {
+        /*for (Iterator<Documento> it = this.documentos.iterator(); it.hasNext();) {
             Documento documento = it.next();
             return true;
-        }
-        return false;
+        }*/
+        return true;
     }    
 }

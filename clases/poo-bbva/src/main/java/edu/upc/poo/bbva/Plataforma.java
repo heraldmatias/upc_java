@@ -22,32 +22,38 @@ public class Plataforma {
         this.subgerente = new Subgerente();
     }
 
-    public void aperturarCuenta(TipoCuenta cuenta) {
+    public String aperturarCuenta(TipoCuenta cuenta) {
         if (archivador.validarDocumentos(cliente)) {
             Operacion ope = new Operacion(TipoOperacion.APERTURA_CUENTA, cliente);
             if (this.gerente.autorizar(ope)) {
                 switch (cuenta) {
                     case CREDITO: {
+                        return this.entregaTarjeta(cuenta);
                     }
                     case DEBITO: {
+                        return this.entregaTarjeta(cuenta);
                     }
                 }
             }
         }
+        return null;
     }
 
-    public void cancelarCuenta(TipoCuenta cuenta) {
+    public boolean cancelarCuenta(TipoCuenta cuenta) {
         if (archivador.validarDocumentos(cliente)) {
             Operacion ope = new Operacion(TipoOperacion.CANCELACION_CUENTA, cliente);
             if (this.gerente.autorizar(ope)) {
                 switch (cuenta) {
                     case CREDITO: {
+                        return true;
                     }
                     case DEBITO: {
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     public boolean aprobarCredito(double monto) {
@@ -65,10 +71,10 @@ public class Plataforma {
         return aRetornar;
     }
 
-    public String entregaTarjeta(TipoCuenta cuenta) {
+    private String entregaTarjeta(TipoCuenta cuenta) {
         String numero = "";
         for (int i = 0; i < 10; i++) {
-            numero += (int) Math.random() * 10;
+            numero += (int) (Math.random() * 10);
         }
         return cuenta.getLabel() + ": " + numero;
     }
